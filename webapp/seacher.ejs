@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+    <!--<link rel="stylesheet" href="../static/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/extension.css"/>
+
+</head>
+<style>
+    body{
+        background-image:url(./img/bg1.jpg);
+        background-size: cover;
+    }
+</style>
+<body ng-app="searchApp" ng-controller="searchCtrl">
+<!--header-->
+<div class="MyNav">
+    <div class="container">
+       <nav class="navbar navbar-myself" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">企业小雷达</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!--header-->
+<!--center-->
+<center>
+      <div class="container">
+          <div class="search_nav">
+            <nav class="navbar navbar-mynav" role="navigation">
+                <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<a class="navbar-brand" href="#">菜鸟教程</a>-->
+                </div>
+                <div class="collapse navbar-collapse" >
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">全部</a></li>
+                        <li><a href="#">企业名</a></li>
+                        <li><a href="#">法人/股东</a></li>
+                        <li><a href="#">高管</a></li>
+                        <li><a href="#">品牌/产品</a></li>
+                        <li><a href="#">地址/电话</a></li>
+                        <li><a href="#">经营范围</a></li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+          </div>
+          <div class="search">
+              <div class="row">
+                  <form class="input-group" id="searchForm"  method="get" onsubmit="" action="/etlist">
+                        <input type="text" class="form-control input-lg" ng-model="searchVal"  name="key" placeholder="请输入企业名称、人名，产品名等，多关键词用空格隔开，如“小米 雷军”">
+                        <a href="javascript:void(0)" type="submit" id="submit" class="input-group-addon input-lg">搜索</a>
+                  </form>
+                  <!--<form class="input-group"  method="post" ng-submit="skip()">
+                      <input type="text" class="form-control input-lg" ng-model="searchVal" placeholder="请输入企业名称、人名，产品名等，多关键词用空格隔开，如“小米 雷军”">
+                      <a type="submit" ng-href="skip()" class="input-group-addon input-lg">搜索</a>
+                  </form>-->
+               </div>
+          </div>
+      </div>
+</center>
+<!--center-->
+<div class="container">
+    <div class="result">
+        <div class="row">
+            <div >
+                <ul>
+                    <li class="form-control" ng-repeat="et in etlist" ng-click="select(et.et_name)"><a href="javascript:void(0)">{{et.et_name}}</a></li>
+                    <!--<li class="form-control"><a href="javascript:void(0)">搜索</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./bower_components/angular/angular.min.js"></script>
+<script src="./bower_components/angular-route/angular-route.min.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/searcher.js"></script>
+<!--<script src="./bower_components/state/lib/web/state.min.js"></script>-->
+</body>
+</html>

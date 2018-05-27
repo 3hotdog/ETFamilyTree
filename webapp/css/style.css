@@ -1,0 +1,190 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+a,a:hover{
+    text-decoration: none;
+}
+.text-gray{
+color:#999;
+}
+.text-primary{
+color:#128bed;
+}
+.m-1{
+margin-left:1em;
+}
+/*MyNav*/
+.MyNav{
+    background: #fff;
+    width: 100%;
+}
+.MyNav .navbar{
+    border-radius: 0;
+    border:0;
+}
+.MyNav .navbar-myself{
+background:#fff;
+}
+.MyNav .navbar-myself a{
+color:#232323;
+}
+/*MyNav*/
+/*search*/
+.search_nav .navbar-mynav{
+background:none;
+}
+.search_nav{
+width:76%;
+margin-top:8%
+}
+.search_nav .navbar-nav li a{
+color:#fff;
+font-size:1.1em;
+}
+.search_nav .navbar-nav > li > a:focus, .navbar-nav > li > a:hover,.navbar-collapse .active{
+color:#232323;
+background:#eee;
+}
+.search_nav .navbar-collapse .active{
+background:#eee;
+}
+.search_nav .navbar-collapse .active a{
+color:#232323;
+}
+.search{
+    width:76%;
+}
+.search .input-group-addon{
+background:#4d59e8;
+border:none;
+color:#fff;
+}
+/*search*/
+
+/*search_info*/
+.search_info{
+    text-align: left;
+    margin-top: 2%;
+    font-size: 1.1em;
+}
+.search_info a{
+    color:#232323;
+}
+.search_info .panel .panel{
+    border:none;
+}
+.search_info .panel .col .panel-body{
+    border:1px solid #ddd;
+}
+.search_info .head_img{
+    width: 97%;
+    height:97%;
+    border-radius:0.3em;
+}
+.search_info .boss-name{
+    color: #FD485E !important;
+    font-size:1.2em;
+}
+.search_info .boss-province-info{
+    margin-top: 2%;
+}
+.boss-province-info .row{
+    margin-top: 2%;
+}
+.search_info .boss-headn{
+    float: left;
+width: 54px;
+height: 54px;
+border-radius: 6px;
+background: #EFEFEF;
+}
+.search_info .usericon span{
+    text-align: center;
+    color: #9d9d9d;
+    font-size:2em;
+}
+.search_info .boss-sum{
+    text-align: center;
+    color: #128bed;
+}
+.project .project-name{
+color:#128bed;
+font-size:1.2em;
+}
+.project .proinv-status{
+padding: 0.3em 0.3em;
+font-size: 1em;
+color: #128bed;
+border: solid 1px #128bed;
+border-radius: 2px;
+}
+.project-gray{
+margin-top:2%;
+}
+/*search_info*/
+/*v3_sl_tab*/
+.v3_sl_tab .Btntoggle .mybtn{
+border-bottom:1px solid #ddd;
+border-left:1px solid #ddd;
+border-right:1px solid #ddd;
+}
+.v3_sl_tab dl{
+clear:left;
+}
+.pull-left dd,dt{
+float:left;
+padding:0 0.7em 0 0.7em;
+}
+.pull-left dd:hover{
+background:#128cec;
+color:#fff;
+}
+.pull-left dd .dropdown{
+list-style:none;
+}
+.pull-left dd .dropdown a:hover{
+color:#fff;
+text-decoration:none;
+}
+.pull-left a.more{
+color:gray;
+float:right;
+}
+/*v3_sl_tab*/
+/*other-company*/
+.other-company .sort{
+float:right;
+}
+.other-company .sort li{
+list-style:none;
+}
+.mytable tr td img{
+width: 80px;
+max-height: 80px
+}
+.mytable tr td .ma_h1{
+color:#222;
+font-size:1.2em;
+font-weight:bold;
+}
+.mytable tr td a.text-primary{
+color:#128bed;
+}
+.mytable tr td p.m-t-xs{
+color:#666;
+}
+.mytable tr td .badge{
+display: inline-block;
+min-width: 10px;
+padding: 3px 7px;
+font-size: 1em;
+font-weight: 700;
+line-height: 1;
+color: #fff;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+background-color: #009944;
+}
+/*other-company*/
