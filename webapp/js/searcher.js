@@ -24,21 +24,8 @@
         }
 
         $scope.skip=function(){
-            /*console.log("ss");
-            var key=document.getElementsByName("key")[0].value||"";
-            console.log("key "+key)
-            $http({
-                url:"/etlist",
-                method:"POST",
-                params:{key:key}
-            })
-                .success(function(data){
-                    return;
-                })*/
             var key=document.getElementsByName("key")[0].value||"";
             document.getElementById("submit").href="/etlist?key="+key;
         }
     }]);
-
-
 })(angular)

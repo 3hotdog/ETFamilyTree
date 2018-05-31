@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<tr ng-repeat="et in etlist">
+    <td>
+        <img src="img/default.jpg">
+    </td>
+    <td>
+        <a href="/etinfo?et={{et.et_id}}"  class="ma_h1">{{et.et_name}}</a><br/>
+        <p class="m-t-xs">法定代表人:<a href="" class="text-primary">{{et.legalman}}</a>
+            <span class="m-1">注册资本：{{et.reg_fund}}</span>
+            <span class="m-1">成立时间：{{et.create_date}}</span>
+        </p>
+        </p>
+        <p class="m-t-xs">
+            地址：{{et.address}}
+        </p>
+        <p class="m-t-xs">
+            <i class="glyphicon glyphicon-search"></i>
+            法定代表人：<span class="text-danger">{{et.legalman}}</span>
+        </p>
+    </td>
+    <td>
+        <span class="badge">存续</span>
+    </td>
+</tr>

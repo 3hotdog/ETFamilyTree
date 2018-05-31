@@ -60,11 +60,19 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">全部</a></li>
                         <li><a href="#">企业名</a></li>
-                        <li><a href="#">法人/股东</a></li>
+                        <li><a href="#">法人</a></li>
+                        <li><a href="#">成立日期</a></li>
+                        <li><a href="#">注册资本</a></li>
+                        <li><a href="#">企业类型</a></li>
+                        <li><a href="#">统一社会信用代码</a></li>
+                        <li><a href="#">经营范围</a></li>
+                        <li><a href="#">公司地址</a></li>
+                        <li><a href="#">登记机关</a></li>
+                        <!--<li><a href="#">法人/股东</a></li>
                         <li><a href="#">高管</a></li>
                         <li><a href="#">品牌/产品</a></li>
                         <li><a href="#">地址/电话</a></li>
-                        <li><a href="#">经营范围</a></li>
+                        <li><a href="#">经营范围</a></li>-->
                     </ul>
                 </div>
                 </div>
@@ -76,10 +84,6 @@
                         <input type="text" class="form-control input-lg" ng-model="searchVal"  name="key" placeholder="请输入企业名称、人名，产品名等，多关键词用空格隔开，如“小米 雷军”">
                         <a href="javascript:void(0)" type="submit" id="submit" class="input-group-addon input-lg">搜索</a>
                   </form>
-                  <!--<form class="input-group"  method="post" ng-submit="skip()">
-                      <input type="text" class="form-control input-lg" ng-model="searchVal" placeholder="请输入企业名称、人名，产品名等，多关键词用空格隔开，如“小米 雷军”">
-                      <a type="submit" ng-href="skip()" class="input-group-addon input-lg">搜索</a>
-                  </form>-->
                </div>
           </div>
       </div>
@@ -91,7 +95,6 @@
             <div >
                 <ul>
                     <li class="form-control" ng-repeat="et in etlist" ng-click="select(et.et_name)"><a href="javascript:void(0)">{{et.et_name}}</a></li>
-                    <!--<li class="form-control"><a href="javascript:void(0)">搜索</a></li>-->
                 </ul>
             </div>
         </div>

@@ -5,15 +5,14 @@
     <title>简略信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
 </head>
 <style>
 body{
     background: #f6f6f6;
 }
 </style>
-<body>
+<body ng-app="etApp">
 <!--header-->
 <div class="MyNav">
     <div class="container">
@@ -360,50 +359,19 @@ body{
                         <table class="table table-hover mytable">
                           <!--<caption>悬停表格布局</caption>-->
                           <thead>
-
                             <tr>
                               <th>公司</th>
                               <th></th>
                               <th>状态</th>
                             </tr>
                           </thead>
-                          <tbody>
-                          <%for(var i=0;i<etlist.length;i++){ %>
-                          <tr>
-                              <td>
-                              <img src="img/default.jpg">
-                                      </td>
-                                      <td>
-                                      <a href="" class="ma_h1"><%=etlist[i].et_name%></a><br/>
-                                      <p class="m-t-xs">法定代表人:<a href="" class="text-primary"><%=etlist[i].legalman%></a>
-                                      <span class="m-1">注册资本：<%=etlist[i].reg_fund%></span>
-                              <span class="m-1">成立时间：<%=etlist[i].create_date%></span>
-                              </p>
-                                      </p>
-                                      <p class="m-t-xs">
-                                      地址：<%=etlist[i].address%>
-                              </p>
-                              <p class="m-t-xs">
-                                      <i class="glyphicon glyphicon-search"></i>
-                              法定代表人：<span class="text-danger"><%=etlist[i].legalman%></span>
-                                      </p>
-                                      </td>
-                                      <td>
-                                      <span class="badge">存续</span>
-                                      </td>
-                                      </tr>
-                          <%}%>
-                          </tbody>
+                          <tbody ng-view></tbody>
                         </table>
                         <div class="page">
                             <ul class="pagination pagination-md">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">></a></li>
-                                <li><a href="#">...15</a></li>
+                                <%for(var i =1;i<=total;i++){%>
+                                    <li><a href="#/<%=i%>"><%=i%></a></li>
+                                <%}%>
                                 <li style="margin-left:20px;">跳到<input type="text" class="form-control" style="width:60px;display:inline-block;">页
                                  <a href="" class="btn btn-default" style="float:none;">确定</a>
                                 </li>
@@ -417,8 +385,9 @@ body{
       </div>
 </center>
 <!--center-->
+
 <script type="text/javascript">
-$(document).ready(function(){
+/*$(document).ready(function(){
   $('#collapseOne').on('show.bs.collapse', function () {
   <!--alert("收起");-->
     $('#accbtn').text('收起');
@@ -427,7 +396,20 @@ $('#collapseOne').on('hidden.bs.collapse', function () {
 <!--alert("展开");-->
      $('#accbtn').text('展开');
 });
-});
+});*/
 </script>
+<!--保存关键词-->
+<span ng-hide="true" id="key"><%=key%></span>
+<script type="text/javascript">
+        var key=document.getElementById("key");
+        keyword=key.innerText;
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./bower_components/angular/angular.min.js"></script>
+<script src="./bower_components/angular-route/angular-route.min.js"></script>
+<script src="./js/search_info.js"></script>
+<script src="./js/module/module.etlist.js"></script>
+<script src="./js/service/service.etlist.js"></script>
 </body>
 </html>
