@@ -7,6 +7,20 @@ var conn=mysql.createConnection({
     database:'3dog'
 });
 conn.connect();
+//匹配某个字段
+function selectEtByOne(key,field,callback) {
+    key="%"+key+"%";
+    var sql="select et_name,id from enterprise where ?? like ? limit 0,8";
+    var inserts=[field,key];
+    sql = mysql.format(sql, inserts);
+    conn.query(sql,function(err,results,fields){
+        callback(results);
+    });
+}
+//匹配所有字段
+function selectEtByAll() {
+
+}
 //企业搜索
 function searchByEtName(key,callback){
     key="%"+key+"%";
@@ -29,6 +43,7 @@ function counts(key,callback){
         callback(results[0].total);
     });
 }
+
 //法人搜索
 function searchByLegalMan(key){
 

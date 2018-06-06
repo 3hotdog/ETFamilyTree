@@ -80,7 +80,6 @@ function queryEtInfo(et_id,res){
                         maninvest:maninvest,
                         etinvested:etinvested
                     }
-                    console.log(json);
                     res.render("company_info.ejs",json);
                 })
             })
