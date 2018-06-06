@@ -5,11 +5,35 @@
 a,a:hover{
     text-decoration: none;
 }
+.text-red{
+color:#FD485E;
+}
+.text-black{
+color:#232323;
+}
 .text-gray{
 color:#999;
 }
 .text-primary{
 color:#128bed;
+}
+.span-warning{
+padding:0.6em 0.4em 0.6em 0.4em;
+border:1px solid #F5A623;
+border-radius:10%;
+color:#F5A623;
+}
+.span-success{
+padding:0.6em 0.4em 0.6em 0.4em;
+border:1px solid #009944;
+border-radius:10%;
+color:#009944;
+}
+.span-left{
+float:left;
+}
+.title-left{
+padding-left:3em;
 }
 .m-1{
 margin-left:1em;
@@ -188,3 +212,68 @@ vertical-align: middle;
 background-color: #009944;
 }
 /*other-company*/
+
+/*company_info*/
+/*company-top*/
+.company-top{
+margin-top:3%;
+}
+.company-top .imgkuang img{
+width:100%;
+min-height:100px;
+}
+.company-top .company-name h3{
+font-weight:600;
+}
+.company-top .company-name .span-warning{
+  padding:0.7em 0.5em 0.7em 0.5em;
+  border:1px solid #F5A623;
+  color:#F5A623;
+  margin-top:10%
+}
+.company-top .padding-left{
+padding-left:2%;
+}
+.company-top .p{
+margin-top:2%;
+}
+/*company-top*/
+/*company-risk*/
+.company-risk img{
+width: 84px;
+display: inline-block;
+}
+.company-risk a{
+display: inline-block;
+}
+/*company-risk*/
+/*工商信息*/
+.tr-success{
+background:#f2f9fc;
+}
+.tr-success td{
+border-right:1px solid #e4eef6;
+}
+.two-nav{
+background:#1abc9c;
+}
+.two-nav .navbar-nav li a{
+color:#fff;
+font-size:1.2em;
+}
+table{
+font-size:1.1em;
+}
+/*工商信息*/
+/*company_info*/
+/*图谱*/
+.img-nav{
+background:none;
+}
+.img-nav li a{
+color:#232323;
+}
+.img-nav .active a,a:hover{
+color:#337ab7;
+}
+/*图谱*/

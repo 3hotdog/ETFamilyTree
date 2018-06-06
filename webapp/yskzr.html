@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疑似控制人</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<!--header-->
+<div class="MyNav" style="border:1px solid lightgray">
+    <div class="container">
+        <nav class="navbar navbar-myself" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">企业小雷达</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="button" class="btn btn-info">搜索</button>
+                </form>
+
+            </div>
+        </nav>
+    </div>
+</div>
+<!--header-->
+<!--center-->
+<div class="container">
+    <nav class="navbar img-nav" role="navigation" style="background:none;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-share-alt"></i>天津科技投资集团有限公司</a>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="qyzu.html">企业图谱</a></li>
+                    <li><a href="tzzp.html">投资族谱 </a></li>
+                    <li><a href="gqjgt.html">股权结构图</a></li>
+                    <li class="active"><a href="qyzu.html">疑似实际控制人 </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="chart" style="height:640px;"></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/echarts.js"></script>
+<!--实现鼠标拖拽-->
+<script type="text/javascript">
+    var drag=function(obj){
+
+        obj.bind("mousedown",start);
+
+        function start(event){
+            if(event.button==0){//判断是否点击鼠标左键
+                /*
+                 * clientX和clientY代表鼠标当前的横纵坐标
+                 * offset()该方法返回的对象包含两个整型属性：top 和 left，以像素计。此方法只对可见元素有效。
+                 * bind()绑定事件，同样unbind解绑定，此效果的实现最后必须要解绑定，否则鼠标松开后拖拽效果依然存在
+                 * getX获取当前鼠标横坐标和对象离屏幕左侧距离之差（也就是left）值，
+                 * getY和getX同样道理，这两个差值就是鼠标相对于对象的定位，因为拖拽后鼠标和拖拽对象的相对位置是不变的
+                 */
+                gapX=event.clientX-obj.offset().left;
+                gapY=event.clientY-obj.offset().top;
+                //movemove事件必须绑定到$(document)上，鼠标移动是在整个屏幕上的
+                $(document).bind("mousemove",move);
+                //此处的$(document)可以改为obj
+                $(document).bind("mouseup",stop);
+
+            }
+            return false;//阻止默认事件或冒泡
+        }
+        function move(event){
+            obj.css({
+                "left":(event.clientX-gapX)+"px",
+                "top":(event.clientY-gapY)+"px"
+            });
+            return false;//阻止默认事件或冒泡
+        }
+        function stop(){
+            //解绑定，这一步很必要，前面有解释
+            $(document).unbind("mousemove",move);
+            $(document).unbind("mouseup",stop);
+
+        }
+    }
+    obj=$("#chart");
+    drag(obj);//传入的必须是jQuery对象，否则不能调用jQuery的自定义函数
+</script>
+    <script type="text/javascript">
+        // 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+        var chart1 = echarts.init(document.getElementById("chart"));
+
+        var option = {
+            //backgroundColor: '#ccc',    // 背景颜色
+            title: {                    // 图表标题
+                //text: "收入支出分析",           // 标题文本
+                //left : '3%',                    // 标题距离左侧边距
+                //top : '3%',                     // 标题距顶部边距
+                textStyle : {                       // 标题样式
+                    color : '#000',                     // 标题字体颜色
+                    fontSize : '30',                    // 标题字体大小
+                }
+            },
+            //工具栏
+            toolbox:{
+                show:true,
+                feature:{
+                    saveAsImage:{
+                        show:true
+                    },
+                    restore:{  //还原
+                        show:true
+                    }
+                }
+            },
+            tooltip: {                  // 提示框的配置
+                formatter: function(param) {
+                    if (param.dataType === 'edge') {
+                        //return param.data.category + ': ' + param.data.target;
+                        return param.data.target;
+                    }
+                    //return param.data.category + ': ' + param.data.name;
+                    return param.data.name;
+                }
+            },
+
+            series: [{
+                type: "graph",          // 系列类型:关系图
+                //top: '10%',             // 图表距离容器顶部的距离
+                roam: true,             // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+                focusNodeAdjacency: false,   // 是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。[ default: false ]
+                force: {                // 力引导布局相关的配置项，力引导布局是模拟弹簧电荷模型在每两个节点之间添加一个斥力，每条边的两个节点之间添加一个引力，每次迭代节点会在各个斥力和引力的作用下移动位置，多次迭代后节点会静止在一个受力平衡的位置，达到整个模型的能量最小化。
+                    // 力引导布局的结果有良好的对称性和局部聚合性，也比较美观。
+                    repulsion: 1000,            // [ default: 50 ]节点之间的斥力因子(关系对象之间的距离)。支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大
+                    edgeLength: [150, 100]      // [ default: 30 ]边的两个节点之间的距离(关系对象连接线两端对象的距离,会根据关系对象值得大小来判断距离的大小)，
+                                                // 这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越小则长度越长。如下示例:
+                                                // 值最大的边长度会趋向于 10，值最小的边长度会趋向于 50      edgeLength: [10, 50]
+                },
+                layout: "force",            // 图的布局。[ default: 'none' ]
+                                            // 'none' 不采用任何布局，使用节点中提供的 x， y 作为节点的位置。
+                                            // 'circular' 采用环形布局;'force' 采用力引导布局.
+                // 标记的图形
+                //symbol: "path://M19.300,3.300 L253.300,3.300 C262.136,3.300 269.300,10.463 269.300,19.300 L269.300,21.300 C269.300,30.137 262.136,37.300 253.300,37.300 L19.300,37.300 C10.463,37.300 3.300,30.137 3.300,21.300 L3.300,19.300 C3.300,10.463 10.463,3.300 19.300,3.300 Z",
+                symbol: 'circle',
+                lineStyle: {            // 关系边的公用线条样式。其中 lineStyle.color 支持设置为'source'或者'target'特殊值，此时边会自动取源节点或目标节点的颜色作为自己的颜色。
+                    normal: {
+                        color: '#000',          // 线的颜色[ default: '#aaa' ]
+                        width: 1,               // 线宽[ default: 1 ]
+                        type: 'solid',          // 线的类型[ default: solid ]   'dashed'    'dotted'
+                        opacity: 0.5,           // 图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。[ default: 0.5 ]
+                        curveness: 0            // 边的曲度，支持从 0 到 1 的值，值越大曲度越大。[ default: 0 ]
+                    }
+                },
+                label: {                // 关系对象上的标签
+                    normal: {
+                        show: true,                 // 是否显示标签
+                        position: "inside",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
+                        textStyle: {                // 文本样式
+                            fontSize: 16
+                        }
+                    }
+                },
+                edgeLabel: {                // 连接两个关系对象的线上的标签
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 14
+                        },
+                        formatter: function(param) {        // 标签内容
+                            return param.data.category;
+                        }
+                    }
+                },
+                data: [{
+                    name: "节点1",
+                    draggable: true,                // 节点是否可拖拽，只在使用力引导布局的时候有用。
+                    symbolSize: [100, 100],         // 关系图节点标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。
+                    itemStyle: {
+                        color: '#000'               // 关系图节点标记的颜色
+                    },
+                    category: "100%"         // 数据项所在类目的 index。
+                }, {
+                    name: "节点2",
+                    draggable: true,
+                    symbolSize: [80, 80],
+                    itemStyle: {
+                        color: '#0000ff'
+                    },
+                    category: "40%"
+                }, {
+                    name: "节点3",
+                    draggable: false,
+                    symbolSize: [80, 80],
+                    itemStyle: {
+                        color: '#ff0000'
+                    },
+                    category: "50%"
+                }, {
+                    name: "节点4",
+                    draggable: false,
+                    symbolSize: [80, 80],
+                    itemStyle: {
+                        color: '#ff0000'
+                    },
+                    category: "60%"
+                }, {
+                    name: "节点5",
+                    draggable: false,
+                    symbolSize: [80, 80],
+                    itemStyle: {
+                        color: '#00ff00'
+                    },
+                    category: "78%"
+                }],
+                links: [{                   // 节点间的关系数据
+                    target: "节点1",
+                    source: "节点2",
+                    category: "10%"              // 关系对象连接线上的标签内容
+                }, {
+                    target: "节点2",
+                    source: "节点3",
+                    category: "20%"
+                }, {
+                    target: "节点3",
+                    source: "节点4",
+                    category: "40%"
+                }, {
+                    target: "节点4",
+                    source: "节点5",
+                    category: "66%"
+                }]
+            }],
+
+            animationEasingUpdate: "quinticInOut",          // 数据更新动画的缓动效果。[ default: cubicOut ]    "quinticInOut"
+            animationDurationUpdate: 100                    // 数据更新动画的时长。[ default: 300 ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表
+        chart1.setOption(option);
+    </script>
+</body>
+</html>
