@@ -32,11 +32,11 @@ body{
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                 </ul>
-                 <form class="navbar-form navbar-right" role="search">
+                 <form class="navbar-form navbar-right" role="search" onsubmit="" action="/etlist">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" id="etlist_in_key" placeholder="Search" name="key" value="<%=key%>">
                     </div>
-                    <button type="button" class="btn btn-info">搜索</button>
+                    <button type="submit" class="btn btn-info" id="etlist_btn_search">搜索</button>
                 </form>
 
             </div>
@@ -338,7 +338,7 @@ body{
                <div class="other-company">
                <div class="panel panel-default">
                     <div class="panel-heading">
-                       小雷为你找到<span class="text-danger">5000+</span>相同的企业
+                       小雷为你找到<span class="text-danger"><%=etnum%></span>所相同的企业
                         <div class="sort">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -357,23 +357,24 @@ body{
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover mytable">
-                          <!--<caption>悬停表格布局</caption>-->
-                          <thead>
+                            <!--<caption>悬停表格布局</caption>-->
+                            <thead>
                             <tr>
-                              <th>公司</th>
-                              <th></th>
-                              <th>状态</th>
+                                <th>公司</th>
+                                <th></th>
+                                <th>状态</th>
                             </tr>
-                          </thead>
-                          <tbody ng-view></tbody>
+                            </thead>
+                            <tbody ng-view></tbody>
                         </table>
+
                         <div class="page">
                             <ul class="pagination pagination-md">
-                                <%for(var i =1;i<=total;i++){%>
-                                    <li><a href="#/<%=i%>"><%=i%></a></li>
+                                <%for(var i=1;i<=total;i++){%>
+                                <li><a ng-href="#/<%=i%>"><%=i%></a></li>
                                 <%}%>
-                                <li style="margin-left:20px;">跳到<input type="text" class="form-control" style="width:60px;display:inline-block;">页
-                                 <a href="" class="btn btn-default" style="float:none;">确定</a>
+                                <li style="margin-left:20px;">跳到<input type="text" class="form-control" ng-model="page" style="width:60px;display:inline-block;">页
+                                    <a href="#/{{page}}" class="btn btn-default" id="etlist_btn_page" style="float:none;">确定</a>
                                 </li>
                             </ul>
                         </div>
@@ -399,14 +400,14 @@ $('#collapseOne').on('hidden.bs.collapse', function () {
 });*/
 </script>
 <!--保存关键词-->
-<script>
+<!--<script>
     keyword='<%=key%>';
-</script>
+</script>-->
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./bower_components/angular/angular.min.js"></script>
 <script src="./bower_components/angular-route/angular-route.min.js"></script>
-<script src="js/module/module.etinfo.js"></script>
+<script src="./js/module/module.main.js"></script>
 <script src="./js/module/module.etlist.js"></script>
 <script src="./js/service/service.etlist.js"></script>
 <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>

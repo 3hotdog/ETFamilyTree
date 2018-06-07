@@ -1,4 +1,4 @@
 "use strict";
-//一页显示数据量
-const COUNT = 5;
+//单页显示数据量
+const COUNT = 3;
 module.exports={COUNT}
