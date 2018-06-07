@@ -94,7 +94,9 @@
         <div class="row">
             <div >
                 <ul>
-                    <li class="form-control" ng-repeat="et in etlist" ng-click="select(et.et_name)"><a href="javascript:void(0)">{{et.et_name}}</a></li>
+                    <li class="form-control" ng-repeat="et in etlist|containkey:searchVal" ng-click="select(et.et_name)">
+                        <a href="/etinfo?et={{et.id}}" ng-bind-html="et.et_name|wordPlace:searchVal"></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -106,7 +108,9 @@
 <script src="./bower_components/angular/angular.min.js"></script>
 <script src="./bower_components/angular-route/angular-route.min.js"></script>
 <script src="./js/common.js"></script>
-<script src="./js/searcher.js"></script>
+<script src="js/module/module.search.js"></script>
+<script src="./js/service/service.filter.js"></script>
+<script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <!--<script src="./bower_components/state/lib/web/state.min.js"></script>-->
 </body>
 </html>

@@ -18,9 +18,9 @@ app.get("/favicon.ico",function(req,res){
     return;
 })
 //引入路由
-require("./route/route.seacher")(app);
-require("./route/route.search_info")(app);
-require("./route/route.company_info")(app);
+require("./route/route.search")(app);
+require("./route/route.etlist")(app);
+require("./route/route.etinfo")(app);
 //开启监听
 app.listen(9090,function(err){
    if(err) throw err;

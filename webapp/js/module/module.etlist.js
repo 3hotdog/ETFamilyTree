@@ -1,18 +1,20 @@
 (function(angular){
-    var app=angular.module("etFamlilyTree.module.etlist",["ngRoute","etFamlilyTree.service.etlist"]);
+    var app=angular.module("etFamlilyTree.module.etlist",["ngRoute","etFamlilyTree.service.etlist","etFamlilyTree.service.filter"]);
     app.config(["$routeProvider",function($routeProvider){
         $routeProvider.when("/:page",{
             controller:"etlistCtrl",
-            templateUrl:"./views/etlist.html"
+            templateUrl:"./views/etlist.ejs"
         })
     }]);
     app.controller("etlistCtrl",["$scope","$routeParams","searchets",function($scope,$routeParams,searchets){
-        var key=document.getElementById("key").innerText;
-        searchets.etsByPage(key,$routeParams.page,function(data){
+        // var key=keyword;
+        $scope.keyword=keyword;
+        searchets.etsByPage($scope.keyword,$routeParams.page,function(data){
             $scope.etlist=data.etlist;
             console.log($scope.etlist);
             $scope.$applyAsync();
         });
         $scope.etInfo=searchets.etInfo;
     }]);
+
 })(angular)

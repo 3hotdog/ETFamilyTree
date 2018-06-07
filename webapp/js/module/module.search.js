@@ -1,5 +1,5 @@
 (function(angular){
-    var app=angular.module("searchApp",[]);
+    var app=angular.module("searchApp",["etFamlilyTree.service.filter"]);
     app.controller("searchCtrl",["$scope","$http",function($scope,$http){
         $scope.$watch("searchVal",function (now,old) {
             console.log(now);

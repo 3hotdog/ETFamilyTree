@@ -399,17 +399,17 @@ $('#collapseOne').on('hidden.bs.collapse', function () {
 });*/
 </script>
 <!--保存关键词-->
-<span ng-hide="true" id="key"><%=key%></span>
-<script type="text/javascript">
-        var key=document.getElementById("key");
-        keyword=key.innerText;
+<script>
+    keyword='<%=key%>';
 </script>
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./bower_components/angular/angular.min.js"></script>
 <script src="./bower_components/angular-route/angular-route.min.js"></script>
-<script src="./js/search_info.js"></script>
+<script src="js/module/module.etinfo.js"></script>
 <script src="./js/module/module.etlist.js"></script>
 <script src="./js/service/service.etlist.js"></script>
+<script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="./js/service/service.filter.js"></script>
 </body>
 </html>
