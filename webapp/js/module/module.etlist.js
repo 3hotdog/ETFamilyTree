@@ -33,8 +33,20 @@
             }
             return arr;
         }
-        // document.getElementById("etlist_btn_page").onclick=function () {
-        // }
+        //判断页码格式 格式正确再作跳转
+        document.getElementById("etlist_btn_page").onclick=function () {
+            var page=parseInt(document.getElementById("etlist_in_page").value);
+            var btn_page=document.getElementById("etlist_btn_page");
+            var regPos = /^\d+$/; // 非负整数
+            if(regPos.test(page)&&page>0&&page<=$scope.etlist.length){
+                window.location.href="#/"+page;
+                console.log(page);
+            }else if(page>$scope.etlist.length){
+                alert("页码超出范围");
+            }else{
+                alert("页码格式不正确");
+            }
+        }
     }]);
 
 })(angular)

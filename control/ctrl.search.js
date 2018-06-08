@@ -21,7 +21,7 @@ function queryETs(key,page,count,res,callback) {
                 et_id:results[i].id,
                 et_name:results[i].et_name,
                 create_date:results[i].create_date,
-                reg_fund:results[i].reg_fund,
+                reg_fund_str:results[i].reg_fund_str,
                 address:results[i].address,
                 legalman:results[i].legalp_name
             });

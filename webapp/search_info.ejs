@@ -373,8 +373,8 @@ body{
                                 <%for(var i=1;i<=total;i++){%>
                                 <li><a ng-href="#/<%=i%>"><%=i%></a></li>
                                 <%}%>
-                                <li style="margin-left:20px;">跳到<input type="text" class="form-control" ng-model="page" style="width:60px;display:inline-block;">页
-                                    <a href="#/{{page}}" class="btn btn-default" id="etlist_btn_page" style="float:none;">确定</a>
+                                <li style="margin-left:20px;">跳到<input type="text" class="form-control" ng-model="page" id="etlist_in_page" style="width:60px;display:inline-block;">页
+                                    <a class="btn btn-default" id="etlist_btn_page" style="float:none;">确定</a>
                                 </li>
                             </ul>
                         </div>

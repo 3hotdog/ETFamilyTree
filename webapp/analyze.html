@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content-Type="text/plain">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body ng-app="analyzeApp" ng-controller="navCtrl">
+<!--header-->
+<div class="MyNav" style="border:1px solid lightgray">
+    <div class="container">
+        <nav class="navbar navbar-myself" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">企业小雷达</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search" action="/etlist">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" name="key">
+                    </div>
+                    <button type="button" class="btn btn-info">搜索</button>
+                </form>
+
+            </div>
+        </nav>
+    </div>
+</div>
+<!--header-->
+<!--center-->
+<div class="container" >
+    <nav class="navbar img-nav" role="navigation" style="background:none;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-share-alt"></i>天津科技投资集团有限公司</a>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active:path=='/et'}"><a href="#/et">企业图谱</a></li>
+                    <li ng-class="{active:path=='/inves'}"><a href="#/inves">投资族谱 </a></li>
+                    <li ng-class="{active:path=='/stock'}"><a href="#/stock">股权结构图</a></li>
+                    <li ng-class="{active:path=='/ctrller'}"><a href="#/ctrller">疑似实际控制人 </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--center-->
+</div>
+<div ng-view></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="js/module/module.analyze.js"></script>
+<script src="js/module/module.analyze.et.js"></script>
+<script src="js/module/module.analyze.invest.js"></script>
+<script src="js/module/module.analyze.stock.js"></script>
+<script src="js/module/module.analyze.ctrller.js"></script>
+
+</body>
+
+</html>

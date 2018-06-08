@@ -1,75 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" content-Type="text/plain">
-    <title>股权结构图</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-
-</head>
-
-<body>
-<!--header-->
-<div class="MyNav" style="border:1px solid lightgray">
-    <div class="container">
-        <nav class="navbar navbar-myself" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#example-navbar-collapse">
-                        <span class="sr-only">切换导航</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">企业小雷达</a>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="button" class="btn btn-info">搜索</button>
-                </form>
-
-            </div>
-        </nav>
-    </div>
-</div>
-<!--header-->
-<!--center-->
-<div class="container">
-    <nav class="navbar img-nav" role="navigation" style="background:none;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#example-navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-share-alt"></i>天津科技投资集团有限公司</a>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="qyzu.html">企业图谱</a></li>
-                    <li><a href="tzzp.html">投资族谱 </a></li>
-                    <li class="active"><a href="gqjgt.html">股权结构图</a></li>
-                    <li><a href="yskzr.html">疑似实际控制人 </a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--center-->
-</div>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom-->
 <div id="chart" style="height:640px;"></div>
-<script src="js/jquery.min.js"></script>
-<script src="js/echarts.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/echarts.js"></script>
 <!--实现滚动放大缩小-->
 <script type="text/javascript">
     $(function() {
@@ -268,6 +200,3 @@
     }
 
 </script>
-</body>
-
-</html>

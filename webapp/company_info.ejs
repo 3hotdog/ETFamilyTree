@@ -66,7 +66,7 @@ body{
                             </div>
                             <div class="col-md-6">
                                 <div class="row company-name">
-                                        <h3>天津科技投资集团有限公司</h3>
+                                        <h3><%=etinfo.et_name%></h3>
                                 </div>
                                 <div div="row">
                                     <span class="span-warning">曾用名</span>
@@ -76,23 +76,23 @@ body{
                                 </div>
                                 <div class="row p">
                                     <span class="span-left">电话:</span>
-                                    <span class="span-left padding-left">022-28355150</span>
+                                    <span class="span-left padding-left">-</span>
                                     <a href="" class="span-left padding-left">更多号码</a>
                                 </div>
                                 <div class="row p">
                                     <span class="span-left">邮箱:</span>
-                                    <span class="span-left padding-left"><a href="" class="text-gray">linhaigang@stic.com.cn</a></span>
+                                    <span class="span-left padding-left"><a href="" class="text-gray">-</a></span>
                                     <span class="span-left title-left">官网:</span>
-                                    <a href="" class="span-left padding-left text-gray">www.stic.com.cn</a>
+                                    <a href="" class="span-left padding-left text-gray">-</a>
                                 </div>
                                 <div class="row p">
                                     <span class="span-left">地址:</span>
-                                    <span class="span-left padding-left"><a href="" class="text-gray"> 天津经济技术开发区兆发新村8号融科大厦412室</a></span>
+                                    <span class="span-left padding-left"><a href="" class="text-gray"><%=etinfo.address%></a></span>
                                     <a href="" class="span-left padding-left">附近公司</a>
                                 </div>
                                 <div class="row p">
                                     <span class="span-left">企业情报动态:</span>
-                                    <span class="span-left padding-left text-gray">共2条</span>
+                                    <span class="span-left padding-left text-gray">共-条</span>
                                     <a href="" class="span-left padding-left">查看详情</a>
                                 </div>
                             </div>
@@ -165,10 +165,10 @@ body{
                             </div>
                             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#">企业族谱</a></li>
-                                    <li><a href="#">投资族谱</a></li>
-                                    <li><a href="#">股权结构图</a></li>
-                                    <li><a href="#"><i class="glyphicon glyphicon-user"></i>疑似实际控制人</a></li>
+                                    <li><a href="analyze.html#/et">企业族谱</a></li>
+                                    <li><a href="analyze.html#/inves">投资族谱</a></li>
+                                    <li><a href="analyze.html#/stock">股权结构图</a></li>
+                                    <li><a href="analyze.html#/ctrller"><i class="glyphicon glyphicon-user"></i>疑似实际控制人</a></li>
                                 </ul>
                             </div>
                             </div>
@@ -216,69 +216,69 @@ body{
                             <tbody>
                                <tr >
                                    <td class="tr-success">注册资金：</td>
-                                   <td><%=etinfo[0].reg_fund%> </td>
+                                   <td><%=etinfo.reg_fund_str%> </td>
                                    <td class="tr-success">实缴资本：</td>
-                                   <td>_</td>
+                                   <td>-</td>
                                </tr>
                                <tr >
                                    <td class="tr-success">经营状态：</td>
-                                   <td>存续（在营、开业、在册）  </td>
+                                   <td>-  </td>
                                    <td class="tr-success">成立日期：</td>
-                                   <td><%=etinfo[0].create_date%> </td>
+                                   <td><%=etinfo.create_date%> </td>
                                </tr>
                                <tr >
                                    <td class="tr-success">统一社会信用代码：</td>
-                                   <td><%=etinfo[0].credit_code%></td>
+                                   <td><%=etinfo.credit_code%></td>
                                    <td class="tr-success">纳税人识别号：</td>
-                                   <td>91120116103072031N </td>
+                                   <td>- </td>
                                </tr>
                                <tr >
                                    <td class="tr-success">注册号：</td>
-                                   <td>120000000003745 </td>
+                                   <td>- </td>
                                    <td class="tr-success">组织机构代码：</td>
-                                   <td>10307203-1 </td>
+                                   <td>- </td>
                                </tr>
                                <tr >
                                    <td class="tr-success">公司类型：</td>
-                                   <td><%=etinfo[0].et_type%>  </td>
+                                   <td><%=etinfo.et_type%>  </td>
                                    <td class="tr-success">所属行业：</td>
-                                   <td>租赁和商务服务业</td>
+                                   <td>-</td>
                                </tr>
                                <tr >
                                    <td class="tr-success">核准日期：</td>
-                                   <td><%=etinfo[0].confirm_date%></td>
+                                   <td><%=etinfo.confirm_date%></td>
                                    <td class="tr-success">登记机关：</td>
-                                   <td><%=etinfo[0].reg_authority%> </td>
+                                   <td><%=etinfo.reg_authority%> </td>
                                </tr>
                                <tr >
                                    <td class="tr-success">所属地区：</td>
-                                   <td>天津市</td>
+                                   <td>-</td>
                                    <td class="tr-success">英文名：</td>
-                                   <td>_</td>
+                                   <td>-</td>
                                </tr>
                                <tr >
                                    <td class="tr-success">曾用名：</td>
-                                   <td>天津市</td>
+                                   <td>-</td>
                                    <td class="tr-success">英文名：</td>
-                                   <td>_</td>
+                                   <td>-</td>
                                </tr>
                                <tr >
                                    <td class="tr-success">所属地区：</td>
-                                   <td>天津科技发展投资总公司</td>
+                                   <td>-</td>
                                    <td class="tr-success">经营方式</td>
-                                   <td>服务</td>
+                                   <td>-</td>
                                </tr>
                                <tr >
                                    <td class="tr-success">人员规模 </td>
-                                   <td>_</td>
+                                   <td>-</td>
                                    <td class="tr-success">营业期限 </td>
-                                   <td>1997-10-16 至 无固定期限 </td>
+                                   <td>- </td>
                                </tr>
                                <tr >
                                    <td class="tr-success">人员规模 </td>
-                                   <td>_</td>
+                                   <td>-</td>
                                    <td class="tr-success">营业期限 </td>
-                                   <td>1997-10-16 至 无固定期限</td>
+                                   <td>-</td>
                                </tr>
                             </tbody>
                         </table>
@@ -286,11 +286,11 @@ body{
                             <tbody>
                                 <tr >
                                    <td class="tr-success">企业地址：</td>
-                                   <td><%=etinfo[0].address%></td>
+                                   <td><%=etinfo.address%></td>
                                </tr>
                                <tr >
                                    <td class="tr-success">经营范围：</td>
-                                   <td><%=etinfo[0].manage_scope%></td>
+                                   <td><%=etinfo.manage_scope%></td>
                                </tr>
                             </tbody>
                         </table>
@@ -305,7 +305,7 @@ body{
                               <th>持股比例</th>
                               <th>认缴出资额（万元）</th>
                               <th>认缴出资日期</th>
-                              <th>股东类型</th>
+                              <!--<th>股东类型</th>-->
                             </tr>
                           </thead>
                           <tbody>
@@ -313,82 +313,123 @@ body{
                             <tr>
                               <td><%=i+1%></td>
                               <td><a href="/etinfo?et=<%=etinvest[i].investor_et%>"><%=etinvest[i].et_name%></a></td>
-                              <td>100% </td>
+                              <td>- </td>
                               <td><%=etinvest[i].et_fund%></td>
-                              <td>_</td>
-                              <td><%=etinvest[i].legalp_name%></td>
+                              <td>-</td>
+                              <!--<td><%=etinvest[i].legalp_name%></td>-->
                             </tr>
                           <%}%>
+                          <%for(var i=0;i<maninvest.length;i++){%>
+                          <tr>
+                              <td><%=i+1%></td>
+                              <td><%=maninvest[i].legalp_name%></td>
+                              <td>- </td>
+                              <td><%=maninvest[i].man_fund%></td>
+                              <td>-</td>
+                              <!--<td>-</td>-->
+                          </tr>
+                          <%}%>
                           </tbody>
+
+                           <!--对外投资-->
+                           <h3>对外投资</h3>
+                           <table class="table table-hover">
+                               <thead>
+                               <tr class="tr-success">
+                                   <th>被投资企业名称</th>
+                                   <th>被投资法定代表人</th>
+                                   <th>注册资本</th>
+                                   <th>出资比例</th>
+                                   <th>成立日期</th>
+                                   <th>状态</th>
+                               </tr>
+                               </thead>
+                               <tbody>
+                               <%for(var i=0;i<etinvested.length;i++){%>
+                               <tr>
+                                   <!--<td><%=i+1%></td>-->
+                                   <td><a href="/etinfo?et=<%=etinvested[i].et_id%>"><%=etinvested[i].et_name%></a></td>
+                                   <td><%=etinvested[i].legalp_name%></td>
+                                   <td><%=etinvested[i].et_fund%></td>
+                                   <td>-</td>
+                                   <td><%=etinvested[i].create_date%></td>
+                                   <td>存续</td>
+                               </tr>
+                               <%}%>
+                               </tbody>
+                           </table>
                         </table>
                    </div>
                 </div>
            </div>
+           <!--many-img-->
+           <div class="many-img" style="float:right;width:20%;">
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <h3 class="panel-title">
+                           企业图谱
+                       </h3>
+                   </div>
+                   <div class="panel-body">
+                       <a href="analyze.html#/et"><img src="img/qytu.jpg" style="width:100%;"/></a>
+                       <div class="row" style="margin-top:3%;">
+                           <div class="col-md-5 col-md-push-2">
+                               <a href="analyze.html#/et" class="btn btn-info">查看企业图谱</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <h3 class="panel-title">
+                           投资图谱
+                       </h3>
+                   </div>
+                   <div class="panel-body">
+                       <a href="analyze.html#/inves"><img src="img/tupu.png" style="width:100%;"/></a>
+                       <div class="row" style="margin-top:3%;">
+                           <div class="col-md-5 col-md-push-2">
+                               <a href="analyze.html#/inves" class="btn btn-info">查看投资图谱</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <h3 class="panel-title">
+                           股权结构图
+                       </h3>
+                   </div>
+                   <div class="panel-body">
+                       <a href="analyze.html#/stock"><img src="img/gqjgt.png" style="width:100%;"/></a>
+                       <div class="row" style="margin-top:3%;">
+                           <div class="col-md-5 col-md-push-2">
+                               <a href="analyze.html#/stock" class="btn btn-info">查看股权结构图</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <h3 class="panel-title">
+                           疑似实际控制人
+                       </h3>
+                   </div>
+                   <div class="panel-body">
+                       <a href="analyze.html#/ctrller"><img src="img/yskzr.png" style="width:100%;"/></a>
+                       <div class="row" style="margin-top:3%;">
+                           <div class="col-md-5 col-md-push-1">
+                               <a href="analyze.html#/ctrller" class="btn btn-info">查看疑似实际控制人</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!--many-img-->
+       </div>
+</div>
            <!--company-basic-info-->
-           <!--many-img-->
-            <div class="many-img" style="float:right;width:20%;">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            企业图谱
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href=""><img src="img/qytu.jpg" style="width:100%;"/></a>
-                        <div class="row" style="margin-top:3%;">
-                            <div class="col-md-5 col-md-push-2">
-                                 <a href="" class="btn btn-info">查看企业图谱</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            投资图谱
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href=""><img src="img/tupu.png" style="width:100%;"/></a>
-                        <div class="row" style="margin-top:3%;">
-                            <div class="col-md-5 col-md-push-2">
-                                 <a href="" class="btn btn-info">查看投资图谱</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            股权结构图
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href=""><img src="img/gqjgt.png" style="width:100%;"/></a>
-                        <div class="row" style="margin-top:3%;">
-                            <div class="col-md-5 col-md-push-2">
-                                 <a href="" class="btn btn-info">查看股权结构图</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            疑似实际控制人
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href=""><img src="img/yskzr.png" style="width:100%;"/></a>
-                        <div class="row" style="margin-top:3%;">
-                            <div class="col-md-5 col-md-push-1">
-                                 <a href="" class="btn btn-info">查看疑似实际控制人</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           <!--many-img-->
+
        </div>
   </div>
 <!--center-->

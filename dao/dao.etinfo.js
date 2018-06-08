@@ -49,7 +49,7 @@ function counts(key,callback){
 //--------------------------------------企业详细信息-------------------------------------------------------
 //查询指定公司具体信息
 function selectEtById(et_id,callback){
-    var sql="select distinct et.*,man.legalp_name from enterprise et join man on et.legalp_id=man.id where et.id=?";
+    var sql="select distinct et.*,man.legalp_name from enterprise et left join man on et.legalp_id=man.id where et.id=?";
     conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
@@ -76,7 +76,7 @@ function selectManInvestor(et_id,callback){
 //查询被该公司投资的公司 id 名称 法人 投资金额 成立日期 法人id
 function selectEtInvested(et_id,callback){
     var sql="SELECT DISTINCT iet.et_id,iet.et_fund,et.et_name,et.create_date,man.legalp_name "+
-        "FROM investor_et iet JOIN enterprise et ON iet.et_id = et.id "+
+        "FROM investor_et iet LEFT JOIN enterprise et ON iet.et_id = et.id "+
         "LEFT JOIN man ON et.legalp_id = man.id "+
         "WHERE iet.investor_et = ? ";
     conn.query(sql,[et_id],function(err,results,fields){

@@ -7,10 +7,17 @@ function queryEtInfo(et_id,res){
         etinfoDao.etInvest(et_id,function (etinvest) {
             etinfoDao.manInvest(et_id,function (maninvest) {
                 etinfoDao.etInvested(et_id,function(etinvested){
-                    etinfo[0].create_date=moment(etinfo[0].create_date).format('YYYY-MM-DD');
-                    etinfo[0].confirm_date=moment(etinfo[0].confirm_date).format('YYYY-MM-DD');
+                    console.log(maninvest);
+                    if(etinfo[0].create_date!=null)
+                        etinfo[0].create_date=moment(etinfo[0].create_date).format('YYYY-MM-DD');
+                    if(etinfo[0].confirm_date!=null)
+                        etinfo[0].confirm_date=moment(etinfo[0].confirm_date).format('YYYY-MM-DD');
+                    etinvested.forEach(function (etd) {
+                        if(etd.create_date!=null)
+                            etd.create_date=moment(etd.create_date).format('YYYY-MM-DD');
+                    })
                     let json={
-                        etinfo:etinfo,
+                        etinfo:etinfo[0],
                         etinvest:etinvest,
                         maninvest:maninvest,
                         etinvested:etinvested
