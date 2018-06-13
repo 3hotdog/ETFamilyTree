@@ -21,6 +21,7 @@ app.get("/favicon.ico",function(req,res){
 require("./route/route.search")(app);
 require("./route/route.etlist")(app);
 require("./route/route.etinfo")(app);
+require("./route/route.chart")(app);
 //开启监听
 app.listen(9090,function(err){
    if(err) throw err;

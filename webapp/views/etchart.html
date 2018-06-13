@@ -1,0 +1,227 @@
+<head>
+    <<meta charset="utf-8">
+    <script type="text/javascript" src="../js/d3.v3.js"></script>
+</head>
+<style>
+    .node circle {
+        cursor:pointer;
+        stroke-width: 4px;
+    }
+    .node circle:hover{
+        stroke-width: 5px;
+    }
+    .node {
+        font: 14px sans-serif;
+        display:block;
+    }
+    .node:hover{
+        font: 18px sans-serif;
+    }
+
+    .hidenode {
+        font: 12px sans-serif;
+        display:none;
+    }
+    .link {
+        fill: none;
+        stroke: #9ecae1;
+        stroke-width: 1px;
+    }
+
+</style>
+<body>
+<script type="text/javascript">
+    //图像区域大小
+    var w=document.body.clientWidth;
+    var h=w/2;
+    //动画持续时间
+    var duration=1000;
+    //节点编号
+    var index=0;
+    //新建画布，移动到圆心位置
+    var svg = d3.select("body").append("svg")
+        .attr("width", w)
+        .attr("height", h)
+        .call(d3.behavior.zoom().on("zoom", function () {
+            svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+        }))
+        .append("g")
+        .attr("transform", function(d){ return "translate("+w/2+"," + h/2 + ")";});
+    //定义一个Tree对象,定义旋转角度和最大半径
+    var tree = d3.layout.tree()
+        .size([360,200])//360-环状树的旋转角度，200-为环树的半径
+        .separation(function(a,b) { return (a.parent == b.parent ? 1 : 2)/a.depth;});
+
+    //定义布局方向
+    var diagonal = d3.svg.diagonal()
+        .projection(function(d) {
+            var r = d.y, a = (d.x-90) / 180 * Math.PI;
+            return [r * Math.cos(a), r * Math.sin(a)];
+        });
+    function update(source) {
+
+        // Compute the new tree layout.
+        var nodes = tree.nodes(root).reverse(),
+            links = tree.links(nodes);
+
+        // Update the nodes…
+        var node = svg.selectAll("g.node")
+            .data(nodes, function(d) { return d.id || (d.id = ++index); });
+
+        // Enter any new nodes at the parent's previous position.
+        var nodeEnter = node.enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) { return "rotate(" + (d.x-90) + ")translate(" + d.y + ")"; })
+            .on("click", click);
+
+        nodeEnter.append("circle")
+            .attr("r", 8)
+            .style("fill", function(d) { return d.children==null && d._children==null?"#49ceb0":"#3ea6ff";})
+            .style("stroke",function(d){return d.children==null && d._children==null?"#fff":"#9ed2ff";});
+
+        nodeEnter.append("text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+            .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+            .text(function(d) { return d.name; })
+            .style("fill-opacity", 8);
+
+        // Transition nodes to their new position.
+        var nodeUpdate = node.transition()
+            .duration(duration)
+            .attr("transform", function(d) { return "rotate(" + (d.x-90) + ")translate(" + d.y + ")"; });
+
+        nodeUpdate.select("circle")
+            .attr("r", 8)
+            .style("fill", function(d) {return d.children==null && d._children==null?"#49ceb0":"#3ea6ff";})
+            .style("stroke",function(d){return d.children==null && d._children==null?"#fff":"#9ed2ff";});
+
+        nodeUpdate.select("text")
+            .style("fill-opacity", 2);
+
+        // Transition exiting nodes to the parent's new position.
+        var nodeExit = node.exit().transition()
+            .duration(duration)
+            .attr("transform", function(d) { return "rotate(" + (source.x-90) + ")translate(" + source.y + ")"; })
+            .remove();
+
+        nodeExit.select("circle")
+            .attr("r", 8);
+
+        nodeExit.select("text")
+            .style("fill-opacity", 8);
+
+        // Update the links…
+        var link = svg.selectAll("path.link")
+            .data(links, function(d) { return d.target.id; });
+
+        // Enter any new links at the parent's previous position.
+        link.enter().insert("path", "g")
+            .attr("class", "link")
+            .attr("d", function(d) {
+                var o = {x: source.x0, y: source.y0};
+                return diagonal({source: o, target: o});
+            });
+
+        // Transition links to their new position.
+        link.transition()
+            .duration(duration)
+            .attr("d", diagonal);
+
+        // Transition exiting nodes to the parent's new position.
+        link.exit().transition()
+            .duration(duration)
+            .attr("d", function(d) {
+                var o = {x: source.x, y: source.y};
+                return diagonal({source: o, target: o});
+            })
+            .remove();
+
+        // Stash the old positions for transition.
+        nodes.forEach(function(d) {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+    }
+    // Toggle children on click.
+    function click(d) {
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else {
+            d.children = d._children;
+            d._children = null;
+        }
+        update(d);
+    }
+    // *********** Convert flat data into a nice tree ***************
+    // create a name: node map
+    function etTree(data) {
+        var dataMap = data.reduce(function(map, node) {
+            map[node.name] = node;
+            return map;
+        }, {});
+
+        // create the tree array
+        var treeData = [];
+        data.forEach(function(node) {
+            // add to parent
+            var parent = dataMap[node.parent];
+            if (parent) {
+                // create child array if it doesn't exist
+                (parent.children || (parent.children = []))
+                // add node to child array
+                    .push(node);
+            } else {
+                // parent is null or missing
+                treeData.push(node);
+            }
+        });
+
+    //根据JSON数据生成树
+    //d3.json("map.json", function(error, data) {});
+    root = treeData[0];
+    update(root);
+//根据数据生成nodes集合
+        var nodes = tree.nodes(root);
+//记录现在的位置
+        nodes.forEach(function(d){
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+
+//获取node集合的关系集合
+        var links = tree.links(nodes);
+//根据node集合生成节点,添加id是为了区分是否冗余的节点
+        var node = svg.selectAll(".node")
+            .data(nodes,function(d){return d.id|| (d.id = ++index);});
+
+//为关系集合设置贝塞尔曲线连接
+        var link=svg.selectAll(".link")
+            .data(links, function(d) { return d.target.id;})
+            .enter()
+            .append("path")
+            .attr("class", "link")
+            .attr("d",diagonal);
+
+        node.enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform",function(d){return "rotate(" + (d.x-90) + ")translate(" + d.y + ")"; })
+            .on("click",click);
+
+//为节点添加圆形标记,如果有子节点为红色，否则绿色
+        node.append("circle")
+            .attr("fill",function(d){return d.children==null?"#49ceb0":"#3ea6ff";})
+            .attr("stroke",function(d){return d.children==null?"#fff":"#9ed2ff";})
+            .attr("r", 8);
+
+//为节点添加说明文字
+        node.append("text")
+            .attr("dy", "0.31em")
+            .text(function(d){return d.name;})
+            .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+            .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; });
+    }
+</script>
+</body>

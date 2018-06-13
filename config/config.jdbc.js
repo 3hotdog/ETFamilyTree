@@ -7,10 +7,12 @@ function getConnection() {
         host     : 'localhost',
         user     : 'root',
         password : 'root',
-        database : '3dog'
+        database : '3dog',
+        multipleStatements: true
     });
     connection.connect();
     return  connection;
 }
+
 //将方法暴露出去
-module.exports={getConnection};
+module.exports={getConnection,mysql};

@@ -3,10 +3,10 @@ const fs=require("fs"),
     path=require("path"),
     searchDao=require("../dao/dao.etinfo"),
     etDao=require("../dao/ETDao");
-//首页搜索 显示前八项数据
-function queryShortET(key,res){
+//首页搜索
+function queryShortET(key,count,res){
     if(key==undefined||key=="") return;
-    etDao.etByAll(key,function (results) {
+    etDao.etByAll(key,count,function (results) {
         res.writeHead(200);
         res.end(JSON.stringify(results));
     })

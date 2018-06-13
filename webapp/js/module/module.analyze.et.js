@@ -1,12 +1,14 @@
 (function (angular) {
-    var app=angular.module("analyze.module.et",["ngRoute"]);
+    var app=angular.module("analyze.module.et",["ngRoute","analyze.service.et"]);
     app.config(["$routeProvider",function ($routeProvider) {
-        $routeProvider.when("/et",{
+        $routeProvider.when("/et/:et",{
             controller:"etChart",
-            templateUrl:"./views/qyzu.html"
+            templateUrl:"./views/etchart.html"
         })
     }]);
-    app.controller("etChart",["$scope",function ($scope) {
-
+    app.controller("etChart",["$scope","$routeParams","etAnalyze",function ($scope,$routeParams,etAnalyze) {
+        etAnalyze.et_stock_invest($routeParams.et,function (data) {
+            etTree(data);
+        });
     }])
 })(angular)

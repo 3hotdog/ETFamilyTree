@@ -2,13 +2,13 @@
 const connector=require("../config/config.jdbc");
 var conn=connector.getConnection();
 //匹配所有字段 用于首页搜索匹配关键字
-function selectEtByAll(key,callback) {
+function selectEtByAll(key,count,callback) {
     key="%"+key+"%";
     var sql="SELECT DISTINCT et.id,et_name,legalp_name,reg_authority FROM enterprise et " +
         "LEFT JOIN man ON et.legalp_id = man.id " +
         "WHERE CONCAT( et_name,et_type,credit_code,manage_scope,address,reg_authority,reg_fund_str,legalp_name) " +
-        "LIKE ? LIMIT 0,8";
-    conn.query(sql,[key],function(err,results,fields){
+        "LIKE ? LIMIT 0,?";
+    conn.query(sql,[key,count],function(err,results,fields){
         callback(results);
     });
 }
