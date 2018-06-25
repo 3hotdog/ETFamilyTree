@@ -25,8 +25,13 @@ module.exports=function(app) {
     app.post("/relativechart",function (req,res) {
         let form=new formidable.IncomingForm();
         form.parse(req,function(err,fields,files){
-            // chartCtrl.invest(fields.params.et,res);
+            chartCtrl.findRelation(fields.params.et,res);
+        });
+    });
+    app.post("/ctrllerchart",function (req,res) {
+        let form=new formidable.IncomingForm();
+        form.parse(req,function(err,fields,files){
             chartCtrl.realController(fields.params.et,res);
         });
-    })
+    });
 }

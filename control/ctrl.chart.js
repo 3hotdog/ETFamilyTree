@@ -1,6 +1,7 @@
 "use strict";
 const  etinfoDao=require("../dao/dao.etinfo"),
-    params=require("../config/config.params");
+    params=require("../config/config.params"),
+    relation=require("../dao/dao.etinfo.relation");
 function et_stock_invest(et_id,res) {//股东和对外投资。
     etinfoDao.shortEt(et_id,function (et) {
         etinfoDao.manInvest(et_id,function (maninvest) {//股东
@@ -67,6 +68,7 @@ function invest(et_id,res) {
     });
 }
 // var realStock=[];
+//findController废弃
 function findController(et_id,callback) {
     var stock=[];
     etinfoDao.etInvest(et_id,function (etinvest) {
@@ -131,7 +133,6 @@ function realController(et_id,res){
                 let json={};
                 if(maxEt[0].etfund>maxMan.fund){
                     maxEt=maxEt.splice(0,maxEt.length-1);
-                    console.log("maxEt "+maxEt)
                     json={
                         et:et[0],
                         maxEt:maxEt
@@ -154,6 +155,27 @@ function realController(et_id,res){
 
 
 }
+//疑似关系
+function relationship(et_id,res){
+    etinfoDao.manInvest(et_id,function (maninvest) {//股东
+        etinfoDao.etInvest(et_id,function(etinvest){//企业股东
+            etinfoDao.etInvested(et_id,function(etinvested){//对外投资
+                for(var i=0;i<=etinvested.length;i++){
+                    for(var j=0;j<=etinvest.length;j++){
+                        for(var k=0;i<=maninvest.length;k++){
+                            etinfoDao.selectEtByManInvested(maninvest[i].id,function (ets1) {
+                                etinfoDao.etInvest(et_id,function(ets2) {//企业股东
+
+                                });
+                            });
+                        }
+                    }
+                }
+            });
+        });
+    })
+
+}
 function etName(et_id,res) {
     etinfoDao.etName(et_id,function (et_name) {
         res.writeHead(200);
@@ -171,4 +193,35 @@ function strTofund(fundStr){
         }
     }
 }
-module.exports={et_stock_invest,etName,invest,realController}
+//关联关系
+function findRelation(et_id,res) {
+    etinfoDao.shortEt(et_id,function (etinfo) {
+        relation.manToEt(et_id,function (manToEt) {
+            relation.etToEt(et_id,function (etToEt) {
+                relation.etedToEt(et_id,function (etedToEt) {
+                    relation.etFromEt(et_id,function (etFromEt) {
+                        relation.etedFromEt(et_id,function (etedFromEt) {
+                            relation.etFromMan(et_id,function (etFromMan) {
+                                relation.etedFromMan(et_id,function (etedFromMan) {
+                                    let json={
+                                        etinfo:etinfo[0],
+                                        manToEt:manToEt,
+                                        etToEt:etToEt,
+                                        etedToEt:etedToEt,
+                                        etFromEt:etFromEt,
+                                        etedFromEt:etedFromEt,
+                                        etFromMan:etFromMan,
+                                        etedFromMan:etedFromMan
+                                    }
+                                    res.writeHead(200);
+                                    res.end(JSON.stringify(json));
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+}
+module.exports={et_stock_invest,etName,invest,realController,findRelation}

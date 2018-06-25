@@ -18,6 +18,7 @@
                 $scope.et_name=data.et_name.et_name;
             });
             $scope.path=now;
+            $("svg").detach();
         });
     }])
 

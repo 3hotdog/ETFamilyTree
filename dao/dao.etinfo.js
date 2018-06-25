@@ -166,6 +166,66 @@ function strTofund(fundStr){
         }
     }
 }
+/*
+drop procedure if exists cursor_etInvest;
+delimiter //
+create procedure cursor_etInvest(id INT)
+begin
+-- 声明与列的类型相同的四个变量
+declare et_id INT;
+declare etname varchar(20);
+declare etfund varchar(20);
+declare regfund varchar(20);
+-- 创建结束标志变量
+declare done int default false;
+
+-- 1、定义一个游标mycursor
+declare mycursor cursor for
+    select et.id,et.et_name,iet.et_fund,et.reg_fund_str
+from enterprise et RIGHT JOIN investor_et iet
+on et.id=iet.investor_et where et_fund in
+(select MAX(-(-iet.et_fund)) from investor_et iet where iet.et_id=id);
+-- 指定游标循环结束时的返回值
+declare continue HANDLER for not found set done = true;
+SET @@max_sp_recursion_depth = 20;
+-- 2、打开游标
+open mycursor;
+-- 3、使用游标获取列的值
+fetch mycursor into et_id,etname,etfund,regfund;
+INSERT INTO tmp_et VALUES (et_id,etname,etfund,regfund);
+WHILE (!done)
+DO
+CALL cursor_etInvest(et_id);
+FETCH mycursor INTO et_id,etname,etfund,regfund;
+END WHILE;
+-- 4、显示结果
+select et_id,etname,etfund,regfund;
+-- 5、关闭游标
+close mycursor;
+end;
+//
+delimiter ;
+-- call cursor_etInvest(13);
+-- 定义调用递归操作的存储过程
+drop procedure if exists etTable;
+delimiter //
+create procedure etTable(id INT)
+begin
+DROP TEMPORARY TABLE IF EXISTS tmp_et;
+CREATE TEMPORARY TABLE tmp_et(
+    et_id INT,
+    etname varchar(40),
+    etfund varchar(40),
+    regfund varchar(40)
+);
+CALL cursor_etInvest(id);
+SELECT distinct *
+FROM
+tmp_et;
+end;
+//
+delimiter ;
+*/
 //查询最大企业股东
 function selectMaxEt(et_id,callback){
     var sql="call etTable("+et_id+");";

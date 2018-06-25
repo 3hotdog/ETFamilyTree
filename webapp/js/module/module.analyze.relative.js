@@ -9,7 +9,7 @@
     app.controller("relativeChart",["$scope","$routeParams","relativeAnalyze",function ($scope,$routeParams,relativeAnalyze) {
         $scope.text="aa";
         relativeAnalyze.relativeHttp($routeParams.et,function (data) {
-            console.log("data "+JSON.stringify(data ));
+            relationChart(data.arr,data.link)
         });
     }])
 })(angular)

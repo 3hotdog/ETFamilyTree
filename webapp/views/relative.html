@@ -11,7 +11,12 @@
 <script type="text/javascript">  
     // 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
     var chart1 = echarts.init(document.getElementById("chart1"));
-      
+    function relationChart(arr,links) {
+        option.series[0].data=arr;
+        option.series[0].links=links;
+        // 使用刚指定的配置项和数据显示图表
+        chart1.setOption(option);
+    }
     var option = {  
         //backgroundColor: '#ccc',    // 背景颜色  
         title: {                    // 图表标题  
@@ -86,7 +91,7 @@
                     }  
                 }  
             },  
-            data: [{  
+            /*data: [{
                 name: "当前节点XXX公司",  
                 draggable: true,                // 节点是否可拖拽，只在使用力引导布局的时候有用。  
                 symbolSize: [100, 100],         // 关系图节点标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。  
@@ -130,7 +135,7 @@
             links: [{                   // 节点间的关系数据  
                 target: "当前节点XXX公司",  
                 source: "XXX企业1",  
-                category: "10%"              // 关系对象连接线上的标签内容  
+                category: "10%"              // 关系对象连接线上的标签内容
             }, {  
                 target: "当前节点XXX公司",  
                 source: "XXX企业2",  
@@ -143,8 +148,8 @@
                 target: "XXX企业2",  
                 source: "XXX人员2",  
                 category: "66%"  
-            }]  
-        }],  
+            }]  */
+        }],
           
         animationEasingUpdate: "quinticInOut",          // 数据更新动画的缓动效果。[ default: cubicOut ]    "quinticInOut"  
         animationDurationUpdate: 100                    // 数据更新动画的时长。[ default: 300 ]  
