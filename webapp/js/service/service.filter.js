@@ -20,5 +20,15 @@
             var result = input.replace(word, "<span style='color:#c00;'>" + word + "</span>");
             return $sce.trustAsHtml(result);
         };
-    })
+    });
+    app.filter('notnull',function () {
+        return function (searchVal) {
+            if(searchVal==''||searchVal==undefined){
+                return 'undefined';
+            }
+            else{
+                return searchVal;
+            }
+        }
+    });
 })(angular)
