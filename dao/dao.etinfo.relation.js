@@ -3,12 +3,12 @@ const connector=require("../config/config.jdbc");
 var conn=connector.getConnection();
 //查询投资该公司的人还投资了哪些公司
 function manToEt(et_id,callback){
-    var sql="SELECT et.id,et.et_name,et.reg_fund_str,man.id,man.legalp_name,im.man_fund "+
+    var sql="SELECT et.id,et.et_name,et.reg_fund_str,man.id man,man.legalp_name,im.man_fund "+
     "from enterprise et RIGHT JOIN investor_man im on et.id=im.et_id left JOIN man on im.investor_man=man.id "+
     "where im.investor_man in( "+
     "SELECT DISTINCT man.id FROM man JOIN investor_man iman ON man.id = iman.investor_man WHERE iman.et_id = ? "+
-    ")and et.id !=?";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+    ")";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }
@@ -22,8 +22,8 @@ function etToEt(et_id,callback){
         "SELECT DISTINCT iet.investor_et "+
         "FROM investor_et iet "+
         "WHERE iet.et_id = ? "+
-        ")and iet.et_id !=?";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+        ")";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }
@@ -37,8 +37,8 @@ function etedToEt(et_id,callback) {
     "SELECT DISTINCT iet.et_id "+
     "FROM investor_et iet "+
     "WHERE iet.investor_et = ? "+
-    ")and iet.investor_et !=?";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+    ")";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }
@@ -52,8 +52,8 @@ function etFromEt(et_id,callback){
     "SELECT DISTINCT iet.investor_et "+
     "FROM investor_et iet "+
     "WHERE iet.et_id = ? "+
-    ")and iet.et_id != ?";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+    ")";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }
@@ -67,8 +67,8 @@ function etedFromEt(et_id,callback) {
     "SELECT DISTINCT iet.et_id "+
     "FROM investor_et iet "+
     "WHERE iet.investor_et = ? "+
-    ")and iet.investor_et !=? ";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+    ") ";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }
@@ -84,8 +84,8 @@ function etFromMan(et_id,callback) {
     "SELECT DISTINCT iet.investor_et "+
     "FROM investor_et iet "+
     "WHERE iet.et_id=? "+
-    ")and im.et_id !=? ";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+    ") ";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }
@@ -101,8 +101,8 @@ function etedFromMan(et_id,callback) {
     "SELECT DISTINCT iet.et_id "+
     "FROM investor_et iet "+
     "WHERE iet.investor_et = ? "+
-    ")and im.et_id !=? ";
-    conn.query(sql,[et_id,et_id],function(err,results,fields){
+    ") ";
+    conn.query(sql,[et_id],function(err,results,fields){
         callback(results);
     });
 }

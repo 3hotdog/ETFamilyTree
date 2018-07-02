@@ -11,14 +11,13 @@
                     callback(data);
                 })
         }
-        this.etInfo=function(et_id){
+        /*this.etInfo=function(et_id){
             $http.post("/etinfo",{
                 // cache:true,
                 params:{et:et_id}
             })
                 .success(function(data){
-                    console.log("data "+data);
                 })
-        }
+        }*/
     }]);
 })(angular)

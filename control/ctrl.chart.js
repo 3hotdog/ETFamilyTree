@@ -2,6 +2,7 @@
 const  etinfoDao=require("../dao/dao.etinfo"),
     params=require("../config/config.params"),
     relation=require("../dao/dao.etinfo.relation");
+//股权结构
 function et_stock_invest(et_id,res) {//股东和对外投资。
     etinfoDao.shortEt(et_id,function (et) {
         etinfoDao.manInvest(et_id,function (maninvest) {//股东
@@ -153,27 +154,6 @@ function realController(et_id,res){
         });
     })
 
-
-}
-//疑似关系
-function relationship(et_id,res){
-    etinfoDao.manInvest(et_id,function (maninvest) {//股东
-        etinfoDao.etInvest(et_id,function(etinvest){//企业股东
-            etinfoDao.etInvested(et_id,function(etinvested){//对外投资
-                for(var i=0;i<=etinvested.length;i++){
-                    for(var j=0;j<=etinvest.length;j++){
-                        for(var k=0;i<=maninvest.length;k++){
-                            etinfoDao.selectEtByManInvested(maninvest[i].id,function (ets1) {
-                                etinfoDao.etInvest(et_id,function(ets2) {//企业股东
-
-                                });
-                            });
-                        }
-                    }
-                }
-            });
-        });
-    })
 
 }
 function etName(et_id,res) {

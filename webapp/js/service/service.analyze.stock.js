@@ -30,7 +30,6 @@
                         {"name":'对外投资',
                             "children":invest}
                     ]});
-                console.log(result);
                 callback(result);
             });
         }

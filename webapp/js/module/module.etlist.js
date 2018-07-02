@@ -16,7 +16,6 @@
             searchets.etsByPage(key,$routeParams.page,function(data){
                 $scope.etlist=data.etlist;
                 // $scope.total=data.total;
-                console.log($scope.etlist);
                 $scope.$applyAsync();
             });
         }
@@ -40,7 +39,6 @@
             var regPos = /^\d+$/; // 非负整数
             if(regPos.test(page)&&page>0&&page<=$scope.etlist.length){
                 window.location.href="#/"+page;
-                console.log(page);
             }else if(page>$scope.etlist.length){
                 alert("页码超出范围");
             }else{

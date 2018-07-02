@@ -2,14 +2,12 @@
     var app=angular.module("searchApp",["etFamlilyTree.service.filter"]);
     app.controller("searchCtrl",["$scope","$http",function($scope,$http){
         $scope.$watch("searchVal",function (now,old) {
-            console.log(now);
             $http({
                 url:"/search",
                 method:"POST",
                 params:{key:now}
             }).
             success(function(data){
-                console.log(data);
                 $scope.etlist=data;
             })
             // var key=document.getElementsByName("key")[0].value||"";

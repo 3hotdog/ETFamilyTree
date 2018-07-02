@@ -10,7 +10,6 @@
         $scope.$location=$location;
         $scope.$watch("$location.path()",function (now,old) {
             $scope.et=now.replace(/[^0-9]/ig,"");
-            console.log($scope.et);
             $http.post("/etname",{
                 params:{et:$scope.et},
                 cache:true

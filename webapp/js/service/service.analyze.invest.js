@@ -37,7 +37,6 @@
                         }
                     })
                 }
-                console.log("invest "+JSON.stringify(invest));
 
                 let result=[];
                 result.push({"name":et_name,
