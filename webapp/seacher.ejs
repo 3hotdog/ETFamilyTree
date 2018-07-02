@@ -83,7 +83,7 @@
                   <form class="input-group" id="searchForm"  method="get" action="/etlist">
                         <!--<input type="text" class="form-control input-lg" ng-model="searchVal"  id="in-key" name="key" placeholder="请输入企业名称、人名，产品名等，多关键词用空格隔开，如“小米 雷军”">-->
                       <input type="text" class="form-control input-lg" ng-model="searchVal" required="required"  name="key" placeholder="请输入企业名称、人名、统一社会信用代码等，如“腾讯”">
-                      <a href="/etlist?key={{searchVal}}" type="submit" id="submit" class="input-group-addon input-lg" required="required">搜索</a>
+                      <a href="/etlist?key={{searchVal|notnull:searchVal}}" type="submit" class="input-group-addon input-lg">搜索</a>
                   </form>
                </div>
           </div>
